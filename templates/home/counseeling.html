@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Counselling{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h2>Direct Contact to our counsallers</h2>
+    <form method="post" action="counselling">
+    {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fname1">First name</label>
+                <input type="text" class="form-control" id="fname1" name="fname1" aria-describedby="fname1">
+                <small id="emailHelp" class="form-text text-muted">Please enter your first name</small>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="lname1">Last name</label>
+                <input type="text" class="form-control" id="lname1" name="lname1" aria-describedby="lname1">
+                <small id="emailHelp" class="form-text text-muted">Please enter your last name</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email1">Email address</label>
+            <input type="email" class="form-control" id="email1" name='email1' aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone1">Phone Numbar</label>
+            <input type="phone" class="form-control" id="phone1" name="phone1">
+            <small id="emailHelp" class="form-text text-muted">enter phone number with country code</small>
+        </div>
+
+        <div class="form-group">
+            <label for="modes">Method for counselling</label>
+            <select class="form-control" id="mode" name="modes">
+                <option>Phone call</option>
+                <option>Resive SMS</option>
+                <option>Video call</option>
+                <option>Email</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="content1">Subject</label>
+            <textarea class="form-control" placeholder="Write here your message" name="content1" id="content1" cols="30" rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Contact us!!{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h2>Contact to our admins</h2>
+    <form method="post" action="contact">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fname">First name</label>
+                <input type="text" class="form-control" id="fname" name="fname" aria-describedby="fname">
+                <small id="emailHelp" class="form-text text-muted">Please enter your first name</small>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="lname">Last name</label>
+                <input type="text" class="form-control" id="lname" name="lname" aria-describedby="lname">
+                <small id="emailHelp" class="form-text text-muted">Please enter your last name</small>
+            </div>
+        </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name='email' aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Numbar</label>
+            <input type="phone" class="form-control" id="phone" name="phone">
+            <small id="emailHelp" class="form-text text-muted">enter phone number with country code</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">How we may help you ??</label>
+            <textarea class="form-control" name="content" id="content" cols="30" rows="5"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock body %}

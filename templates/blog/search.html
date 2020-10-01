@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<h2>Search Results:</h2>
+
+{% block title %}Search Results{% endblock title %}
+
+{% block searchs %}
+<form method="get" action="/blog/search" class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="result"
+        id="result">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock searchs %}
+
+{% block body %}
+<div class="container my-3">
+    <h2>Search Results:</h2>
+
+    {% if allPosts|length < 1 %}
+    <div class="med" id="res" role="main">
+        <div id="topstuff">
+            <div class="mnr-c">
+                <div class="med card-section">
+                    <p aria-level="3" role="heading" style="padding-top:.33em">Your search - <em><b>{{result}}</b></em>
+                        - did not match any documents.</p>
+                    <p style="margin-top:1em">Suggestions:</p>
+                    <ul style="margin-left:1.3em;margin-bottom:2em">
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try different keywords.</li>
+                        <li>Try more general keywords.</li>
+                        <li>Try fewer keywords.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="search"></div>
+    </div>
+    {% endif %}
+
+    {% for post in allPosts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-dark">{{ post.cat }} By - {{post.author}}</strong>
+            <strong class="d-inline-block mb-2 text-primary">Related to - {{post.cat}}</strong>
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.timestamp}}</div>
+            <p class="card-text mb-auto">{{post.disp | linebreaks | safe | truncatechars:110}}</p>
+            <div class="my-3">
+                <a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

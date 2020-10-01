@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock title %}
+
+{% block searchs %}
+<form method="get" action="/blog/search" class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="result"
+        id="result">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock searchs %}
+
+{% block js %}
+<script>
+    let previews = document.getElementsByClassName("preview");
+    Array.from(previews).forEach((element) => {
+        element.innerHTML = element.innerText;
+    })
+</script>
+{% endblock js %}
+
+{% block body %}
+{% load static %}
+<div class="jumbotron p-4 p-md-5 text-white rounded bg-primary m-2">
+    <div class="col-md-6 px-0">
+        <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
+        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently
+            about what’s most interesting in this post’s contents.</p>
+    </div>
+</div>
+
+<div class="container my-3">
+    {% for post in allPosts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Article By: {{post.author}}</strong>
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.timestamp}}</div>
+            <div class="preview">{{post.disp|safe | truncatechars:400}}</div>
+
+            <div class="my-2">
+                <a href="/blog/{{post.slug}}" class="stretched-link btn btn-primary">Continue reading</a>
+            </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" width="300" height="300" src="/media/{{ post.thumbnail }}"
+                preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+        </div>
+    </div>
+        {#<a type="download" href="/media/{{ post.thumbnail }}" download="true"><button>Download</button></a>#}
+    {% endfor %}
+</div>
+{% endblock body %}
