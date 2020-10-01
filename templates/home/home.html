@@ -7,7 +7,7 @@
 {#    this is to show wecome page #}
 
 <div class="jumbotron m-3">
-    <h1 class="display-4">Hello, world!</h1>
+    <h1 class="jumbotron-heading"><span id="typed"></span></h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
     featured content or information.</p>
     <hr class="my-4">
@@ -179,4 +179,22 @@
     </div>
   </footer>
 </div>
+
+{% block js %}
+    <!-- This javasctipt is for typejs-->
+    <script>
+        window.onload = function () {
+            console.log("loaded")
+            var typed = new Typed('#typed', {
+                strings: ["Welcome to Janki Minerals Industries", "We are most trusted supplier", "Thanks for visiting"],
+                backSpeed: 15,
+                smartBackspace: true,
+                backDelay: 1200,
+                startDelay: 1000,
+                typeSpeed: 20,
+                loop: true,
+            });
+        };
+    </script>
+    {% endblock js %}
 {% endblock body %}
