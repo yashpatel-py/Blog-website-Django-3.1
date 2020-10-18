@@ -12,3 +12,5 @@
 
 ## To Create SuperUser For Admin Pannel
 + python manage.py createsuperuser
+
+# This blog will also be suprorted in phython 3.9 LTS
